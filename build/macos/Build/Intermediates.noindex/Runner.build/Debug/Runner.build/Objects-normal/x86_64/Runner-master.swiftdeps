@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "313cf916b20a5ac93a36fdd02be46fa3c63dcb9c91ccbd9cd62108210fb04e57"
+build_start_time: [1746790022, 507660865]
+build_end_time: [1746790029, 576503992]
+inputs:
+  "/Users/shubhamranjane/Desktop/Flutter projects/Flutter Bar graphs/bar_graphs/macos/Flutter/GeneratedPluginRegistrant.swift": [1746790000, 610513210]
+  "/Users/shubhamranjane/Desktop/Flutter projects/Flutter Bar graphs/bar_graphs/macos/Runner/AppDelegate.swift": [1741848551, 780936002]
+  "/Users/shubhamranjane/Desktop/Flutter projects/Flutter Bar graphs/bar_graphs/macos/Runner/MainFlutterWindow.swift": [1741848551, 793720245]
