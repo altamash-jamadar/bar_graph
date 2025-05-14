@@ -1,6 +1,5 @@
 import 'package:bar_graphs/app/ui/widgets/bar_graph_widgets.dart';
 import 'package:flutter/material.dart';
-// import '../models/month_amount.dart';
 
 enum BarGraphOrientation { horizontal, vertical }
 
@@ -12,7 +11,7 @@ class BarGraph extends StatelessWidget {
   final int gridLines;
   final EdgeInsets margins;
 
-   BarGraph({
+  BarGraph({
     Key? key,
     required this.data,
     this.orientation = BarGraphOrientation.horizontal,
@@ -20,23 +19,24 @@ class BarGraph extends StatelessWidget {
     this.barColor = Colors.blue,
     this.gridLines = 5,
     this.margins = const EdgeInsets.fromLTRB(40, 20, 20, 40),
-  })  : assert(data.isNotEmpty, 'Data cannot be empty'),
-        super(key: key);
+  }) : assert(data.isNotEmpty, 'Data cannot be empty'),
+       super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) => CustomPaint(
-        size: Size(constraints.maxWidth, constraints.maxHeight),
-        painter: _BarGraphPainter(
-          data: data,
-          orientation: orientation,
-          barThickness: barThickness,
-          barColor: barColor,
-          gridLines: gridLines,
-          margins: margins,
-        ),
-      ),
+      builder:
+          (context, constraints) => CustomPaint(
+            size: Size(constraints.maxWidth, constraints.maxHeight),
+            painter: _BarGraphPainter(
+              data: data,
+              orientation: orientation,
+              barThickness: barThickness,
+              barColor: barColor,
+              gridLines: gridLines,
+              margins: margins,
+            ),
+          ),
     );
   }
 }
@@ -68,8 +68,14 @@ class _BarGraphPainter extends CustomPainter {
     final chartHeight = size.height - top - bottom;
     final maxValue = data.map((e) => e.amount).reduce((a, b) => a > b ? a : b);
 
-    final axisPaint = Paint()..color = Colors.black..strokeWidth = 2;
-    final gridPaint = Paint()..color = Colors.grey.shade300..strokeWidth = 1;
+    final axisPaint =
+        Paint()
+          ..color = Colors.black
+          ..strokeWidth = 2;
+    final gridPaint =
+        Paint()
+          ..color = Colors.grey.shade300
+          ..strokeWidth = 1;
     final barPaint = Paint()..color = barColor;
     final textPainter = TextPainter(textDirection: TextDirection.ltr);
 
@@ -77,7 +83,11 @@ class _BarGraphPainter extends CustomPainter {
       final rowHeight = chartHeight / data.length;
       for (int i = 0; i <= gridLines; i++) {
         final x = left + (chartWidth / gridLines) * i;
-        canvas.drawLine(Offset(x, top), Offset(x, size.height - bottom), gridPaint);
+        canvas.drawLine(
+          Offset(x, top),
+          Offset(x, size.height - bottom),
+          gridPaint,
+        );
         textPainter.text = TextSpan(
           text: (maxValue / gridLines * i).round().toString(),
           style: const TextStyle(fontSize: 10),
@@ -88,7 +98,11 @@ class _BarGraphPainter extends CustomPainter {
           Offset(x - textPainter.width / 2, size.height - bottom + 4),
         );
       }
-      canvas.drawLine(Offset(left, top), Offset(left, size.height - bottom), axisPaint);
+      canvas.drawLine(
+        Offset(left, top),
+        Offset(left, size.height - bottom),
+        axisPaint,
+      );
       canvas.drawLine(
         Offset(left, size.height - bottom),
         Offset(size.width - right, size.height - bottom),
@@ -124,4 +138,3 @@ class _BarGraphPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
-
